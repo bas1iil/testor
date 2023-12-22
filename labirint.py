@@ -13,14 +13,14 @@ WHITE = (255, 255, 255)
 
 window = display.set_mode((WIDTH, HEIGHT))
 
-music = mixer.music.load('Run-Amok(chosic.com).mp3')
+music = mixer.music.load('assets/Run-Amok(chosic.com).mp3')
 
 
 clock = time.Clock()
 
 class Background():
     def __init__(self):
-        self.image = image.load('background.png')
+        self.image = image.load('assets/background.png')
         self.x_1 = 0
         self.x_2 = WIDTH
         self.y = 0
@@ -40,7 +40,7 @@ class Background():
 
 class Ground():
     def __init__(self):
-        self.image = image.load('ground.png')
+        self.image = image.load('assets/ground.png')
         self.x_1 = 0
         self.x_2 = WIDTH
         self.y = HEIGHT - 100
@@ -61,11 +61,11 @@ class Pipes():
     def __init__(self):
         self.gate = randint(100, HEIGHT - 200)
         self.gap = randint(45, 60)
-        self.top_image = image.load('top-pipe.png')
+        self.top_image = image.load('assets/top-pipe.png')
         self.top_rect = self.top_image.get_rect()
         self.top_rect.bottomleft = (WIDTH, self.gate - self.gap)
 
-        self.bot_image = image.load('bot-pipe.png')
+        self.bot_image = image.load('assets/bot-pipe.png')
         self.bot_rect = self.top_image.get_rect()
         self.bot_rect.topleft = (WIDTH, self.gate + self.gap)
     
@@ -88,14 +88,14 @@ class Pipes():
 class Bird(sprite.Sprite):
     def __init__(self):
         super().__init__
-        self.image_orig = image.load('bird.png')
+        self.image_orig = image.load('assets/bird.png')
         self.image = self.image_orig
         self.rect = self.image.get_rect(center = (WIDTH // 3, HEIGHT // 2))
         self.base_speed = -2
         self.speed = self.base_speed
         self.angle = 0
-        self.sound_jump = mixer.Sound('pryjok-2.mp3')
-        self.music_over = mixer.Sound('b1314089d5efb25.mp3')
+        self.sound_jump = mixer.Sound('assets/pryjok-2.mp3')
+        self.music_over = mixer.Sound('assets/b1314089d5efb25.mp3')
     def draw(self):
         window.blit(self.image, self.rect)
     
@@ -128,7 +128,7 @@ class Bird(sprite.Sprite):
             if self.rect.collidelistall([pipe.top_rect, pipe.bot_rect]):
                 game.state = 'over'
                 self.music_over.play()
-                self.image_orig = image.load('diedbird.png')
+                self.image_orig = image.load('assets/diedbird.png')
                 self.angle = -45
                     
     
@@ -136,7 +136,7 @@ class GameManager():
     def __init__(self):
         self.state = 'play'
         self.score = 0
-        self.font = font.Font('Flappy-Bird.ttf', 50)
+        self.font = font.Font('assets/Flappy-Bird.ttf', 50)
         self.score_text = self.font.render('0', True, WHITE)
         self.restart_text = self.font.render('Press R to restart', True, WHITE)
 
@@ -160,7 +160,7 @@ class GameManager():
         mixer.music.unpause()
         self.score = 0
         self.update_score()
-        bird.image_orig = image.load('bird.png')
+        bird.image_orig = image.load('assets/bird.png')
         bird.rect.center = (WIDTH // 3, HEIGHT // 2)
         bird.speed = bird.base_speed
         bird.angle = 0
