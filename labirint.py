@@ -14,7 +14,7 @@ WHITE = (255, 255, 255)
 window = display.set_mode((WIDTH, HEIGHT))
 
 music = mixer.music.load('Run-Amok(chosic.com).mp3')
-mixer.music.play(-1)
+
 
 clock = time.Clock()
 
@@ -197,6 +197,7 @@ while True:
     bird.draw()
     game.draw_score()
     if game.state == 'over':
+        mixer.music.play(-1)
         #game_over.fill(RED)
         mixer.music.pause()
         game.draw_restart()
