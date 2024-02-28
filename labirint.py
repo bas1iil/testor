@@ -124,7 +124,7 @@ class Bird(sprite.Sprite):
                 if e.type == KEYDOWN:
                     if e.key == K_SPACE:
                         self.sound_jump.play()
-                        self.speed = 8
+                        self.speed = 6
             if self.rect.collidelistall([pipe.top_rect, pipe.bot_rect]):
                 game.state = 'over'
                 self.music_over.play()
